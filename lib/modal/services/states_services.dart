@@ -11,7 +11,7 @@ class StatesServices {
         var data = jsonDecode(response.body);
         print('data fetched successfull $data');
 
-        return WorldStatesModel.fromJson(data);
+            return WorldStatesModel.fromJson(data);
       } else {
         throw Exception('error');
       }
