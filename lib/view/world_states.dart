@@ -1,4 +1,5 @@
 import 'package:covid_19_app/modal/services/states_services.dart';
+import 'package:covid_19_app/view/countries_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -45,7 +46,7 @@ class _WorldStatesScreenState extends State<WorldStatesScreen>
                 future: statesServices.fetchWorldStatesRecord(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return Expanded(
                       child: SpinKitFadingCircle(
                         controller: _controller,
                         color: Colors.white,
@@ -97,12 +98,45 @@ class _WorldStatesScreenState extends State<WorldStatesScreen>
                                 ReusableRow(
                                   title: 'Deaths',
                                   value: snapshot.data!.deaths?.toString() ?? 'N/A',
+                                ), ReusableRow(
+                                  title: 'Active',
+                                  value: snapshot.data!.active.toString() ?? 'N/A',
+                                ), ReusableRow(
+                                  title: 'Today Cases',
+                                  value: snapshot.data!.todayCases.toString() ?? 'N/A',
+                                ), ReusableRow(
+                                  title: 'Today Deaths',
+                                  value: snapshot.data!.todayDeaths.toString() ?? 'N/A',
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ],
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const CountriiesListScreen()));
+                          },
+                          child: Container(
+                            height: 51,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Track Countries',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                          ),
+
+                        ),
+                        ),
+                  ],
+
                     );
                   }
                 },

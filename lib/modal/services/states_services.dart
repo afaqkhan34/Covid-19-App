@@ -19,4 +19,20 @@ class StatesServices {
       throw Exception(e.toString());
     }
   }
+  Future<List<dynamic>> countriesList()async{
+    try {
+      final response = await http.get(Uri.parse(AppUrl.countriesList));
+      var data;
+      if (response.statusCode == 200) {
+         data = jsonDecode(response.body);
+        print('data fetched successfull $data');
+
+        return data;
+      } else {
+        throw Exception('error');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }
