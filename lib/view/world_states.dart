@@ -38,10 +38,9 @@ class _WorldStatesScreenState extends State<WorldStatesScreen>
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 80),
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * .01),
               FutureBuilder<WorldStatesModel>(
                 future: statesServices.fetchWorldStatesRecord(),
                 builder: (context, snapshot) {
@@ -83,7 +82,7 @@ class _WorldStatesScreenState extends State<WorldStatesScreen>
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(
-                              vertical: MediaQuery.of(context).size.height * .06),
+                              vertical: MediaQuery.of(context).size.height * .09),
                           child: Card(
                             child: Column(
                               children: [
@@ -157,7 +156,7 @@ class ReusableRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
       child: Column(
         children: [
           Row(
@@ -172,3 +171,5 @@ class ReusableRow extends StatelessWidget {
     );
   }
 }
+
+
